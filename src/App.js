@@ -5,7 +5,8 @@ import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import Login from  "./views/login/login";
 import About from "./views/about/about";
 import Profile from "./views/profile/profile";
-import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';// импорт bootstrap css в наш поект
+//import './App.css';
 class App extends Component {
 	//конструктор
 	constructor(props){
@@ -17,9 +18,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-		  //использовангие роутера
         <Router>
-		  //проверка url и сравнивание с ротуером+ добавление компонента
 					<Switch>
 						<Route exact path="/" component= {About} />
 						<Route path="/profile" render = {(props)=><Profile name="somename"/>} />
