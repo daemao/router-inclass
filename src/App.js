@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 //импортирование библиотеки
-import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import {BrowserRouter as Router, Switch, Route,Redirect} from "react-router-dom";
 import Login from  "./views/login/login";
 import About from "./views/about/about";
 import Profile from "./views/profile/profile";
 import 'bootstrap/dist/css/bootstrap.min.css';// импорт bootstrap css в наш поект
+import NotFound from './views/404'
 //import './App.css';
 class App extends Component {
 	//конструктор
@@ -15,14 +16,23 @@ class App extends Component {
 			users:[{login:"login", password:"pass"}]//возможные комбинации логина и пароля
 		}
 	}
+	LoginRegistrationFunction(newUser){
+		//let tempUser = {email:"em2",password:"pw"};
+		let users = this.state.users;
+		users.push(newUser);
+		this.setState({users});
+	}
+	asd(){}
   render() {
+  	console.log("пользователи",this.state.users,"<<");
     return (
       <div className="App">
         <Router>
 					<Switch>
 						<Route exact path="/" component= {About} />
-						<Route path="/profile" render = {(props)=><Profile name="somename"/>} />
-						<Route path="/login"   render  = {(props)=><Login  users={this.state.users}/>}/>
+						<Route path="/profile" render = {(props)=><Profile  name="somename"/>} />
+						<Route path="/login"   render  = {(props)=><Login Funct ={this.LoginRegistrationFunction.bind(this)} users={this.state.users}/>}/>
+						<Route component={NotFound}/>
 					</Switch>
 				</Router>
       </div>
